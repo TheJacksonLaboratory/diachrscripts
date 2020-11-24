@@ -70,6 +70,7 @@ containing one header line and one line with the corresponding values:
 
 
 import argparse
+from diachr.interaction_classifier import InteractionClassifier
 import math
 import gzip
 import diachrscripts_toolkit as dclass
@@ -80,8 +81,8 @@ from collections import defaultdict
 ######################
 
 parser = argparse.ArgumentParser(description='Identify directed and exclusive undirected interactions.')
-parser.add_argument('--out-prefix', help='Prefix for output.', default='OUTPREFIX')
-parser.add_argument('--enhanced-interaction-file', help='Enhanced interaction file supplemented with digest associated gene symbols and TSS as well as directionality P-values.', required=True)
+parser.add_argument('-p','--out-prefix', help='Prefix for output.', default='OUTPREFIX')
+parser.add_argument('-i','--enhanced-interaction-file', help='Enhanced interaction file supplemented with digest associated gene symbols and TSS as well as directionality P-values.', required=True)
 parser.add_argument('--p-value-threshold', help='P-value threshold for directed interactions.', default=0.001)
 
 
@@ -100,7 +101,11 @@ print("\t[INFO] --p-value-cutoff: " + str(p_value_threshold))
 
 if args.usemod:
     print("[INFO] Using module")
-
+    iclassifier = InteractionClassifier(interaction_file=enhanced_interaction_file, prefix=out_prefix, p_threshold=p_value_threshold)
+    iclassifier.identify_directed_interactions()
+    iclassifier.identify_undirected_interactions()
+    iclassifier.write_to_file()
+    iclassifier.output_statistics()
     exit(1)
 
 # Explore indefinable n

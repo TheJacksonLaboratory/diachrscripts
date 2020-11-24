@@ -149,6 +149,9 @@ class EnhancedInteraction:
         self._enrichment_pair_tag = tag
 
     def set_interaction_category(self, cat):
+        """
+        Set the interaction cateogory to one of 'DI', TODO details
+        """
         self._interaction_category = cat
 
     def in_cis(self) -> bool:
