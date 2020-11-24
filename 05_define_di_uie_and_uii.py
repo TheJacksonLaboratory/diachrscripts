@@ -83,6 +83,10 @@ parser = argparse.ArgumentParser(description='Identify directed and exclusive un
 parser.add_argument('--out-prefix', help='Prefix for output.', default='OUTPREFIX')
 parser.add_argument('--enhanced-interaction-file', help='Enhanced interaction file supplemented with digest associated gene symbols and TSS as well as directionality P-values.', required=True)
 parser.add_argument('--p-value-threshold', help='P-value threshold for directed interactions.', default=0.001)
+
+
+parser.add_argument('-m','--usemod', help="Use new module", dest='usemod', action='store_true')
+
 args = parser.parse_args()
 
 out_prefix = args.out_prefix
@@ -93,6 +97,11 @@ print("[INFO] " + "Input parameters")
 print("\t[INFO] Analysis for: " + out_prefix)
 print("\t[INFO] Interaction file: " + enhanced_interaction_file)
 print("\t[INFO] --p-value-cutoff: " + str(p_value_threshold))
+
+if args.usemod:
+    print("[INFO] Using module")
+
+    exit(1)
 
 # Explore indefinable n
 # import numpy as np
