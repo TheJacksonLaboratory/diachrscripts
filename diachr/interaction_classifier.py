@@ -44,7 +44,7 @@ class InteractionClassifier:
         # Set containing all digests involved in not exclusive undirected interactions
         self._undir_inc_dig_set = set()
         # Smallest n that required for significance given the P-value threshold
-        self._indef_n, _ = find_minimum_powered_n(self._p_threshold, verbose = True)
+        self._indef_n, self._indef_pv = find_minimum_powered_n(self._p_threshold, verbose = True)
         self._einteractions = None # initiialize
        
 
@@ -154,7 +154,7 @@ class InteractionClassifier:
         print()
         undir_inter_involved_dig_num = len(self._undir_dig_set)
         print("\t\t[INFO] Number of digests that are involved in UI: " + str(undir_inter_involved_dig_num))
-        undir_inter_connectivity = "{0:.2f}".format(1 - (self._undir_inter_involved_dig_num / (2 * self._undir_inter_num)))
+        undir_inter_connectivity = "{0:.2f}".format(1 - (undir_inter_involved_dig_num / (2 * self._undir_inter_num)))
         print("\t\t[INFO] Connectivity factor for UI: " + str(undir_inter_connectivity))
         print()
         undir_exc_inter_involved_dig_num = len(self._undir_exc_dig_set)
@@ -234,10 +234,10 @@ class InteractionClassifier:
     str(self._indef_n) + "\t" +
     str(self._indef_pv) + "\t" +
     str(self._indef_inter_num) + "\t" +
-    str(self._indef_inter_percentage) + "\t" +
+    str(indef_inter_percentage) + "\t" +
 
     str(self._dir_inter_num) + "\t" +
-    str(self._dir_inter_percentage) + "\t" +
+    str(dir_inter_percentage) + "\t" +
 
     str(self._undir_inter_num) + "\t" +
     str(undir_inter_percentage) + "\t" +
