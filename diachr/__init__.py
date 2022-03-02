@@ -9,6 +9,7 @@ from .ia_freq_dist_analysis import IaFreqDistAnalysis
 from .ia_freq_dist_analysis_2 import IaFreqDistAnalysis_2
 from .baited_digest import BaitedDigest
 from .baited_digest_set import BaitedDigestSet
+from .readpair_and_interaction_counter import ReadpairAndInteractionCounter
 from .tad_boundaries import TadBoundarySet
 from .CHCTadViz import CHCTadViz
 
@@ -24,5 +25,6 @@ __all__ = [
     "BaitedDigest",
     "BaitedDigestSet",
     "TadBoundarySet",
-    "CHCTadViz"
+    "CHCTadViz",
+    "ReadpairAndInteractionCounter"
 ]
