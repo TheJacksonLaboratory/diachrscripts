@@ -82,7 +82,7 @@ def parse_rmap(rmapfile):
             fields = line.rstrip().split('\t')
             if len(fields) != 4:
                 raise ValueError(f"Malformed rmap line {line}")
-            chrstring = "\t".join(fields[0:2])
+            chrstring = "\t".join(fields[0:3])
             digestid = fields[3]
             digest_map[digestid] = chrstring
     print(f"We found {len(digest_map)} digests")
